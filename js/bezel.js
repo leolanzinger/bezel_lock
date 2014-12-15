@@ -14,7 +14,7 @@ var starting_point;
 var res_x, res_y;
 var threshold_x, threshold_y;
 
-// touch event
+// touch events
 window.addEventListener('load', function(){ // on page load
  
 	res_x = window.screen.availWidth;
@@ -26,63 +26,27 @@ window.addEventListener('load', function(){ // on page load
 	threshold_x = res_x / 5;
 	threshold_y = res_y / 5;
 
+	/*
+	 *	Touch starts: called when finger touches the screen
+	 */
 	document.body.addEventListener('touchstart', function(e){
 		x1 = e.changedTouches[0].pageX;
 		y1 = e.changedTouches[0].pageY;
 
-		// top left corner case
-		if (x1 < bezel_threshold && y1 < threshold_y) {
-			alert("top left 1");
-		}
-		else if (y1 < bezel_threshold && x1 < threshold_x) {
-			alert("top left 2");
-		}
-		// top center
-		else if (x1 > threshold_x && x1 < (res_x - threshold_x) && y1 < bezel_threshold) {
-			alert("top center");
-		}
-		// top right
-		else if ((res_x - x1) < bezel_threshold && y1 < threshold_y) {
-			alert("top right 1");
-		}
-		else if ((y1 < bezel_threshold) && (res_x - x1) < threshold_x) {
-			alert("top right 2");
-		}
-		// middle left
-		else if (x1 < 30 && threshold_y < y1  && y1 < (res_y - threshold_y)) {
-			alert("middle left");
-		}
-		// middle right
-		else if (x1 > (res_x - threshold_x) && threshold_y < y1  && y1 < (res_y - threshold_y)) {
-			alert("middle right");
-		}
-		// bottom left
-		else if (x1 < bezel_threshold && y1 > (res_y - threshold_y)) {
-			alert("bottom left 1")
-		}
-		else if (x1 < threshold_x && y1 > (res_y - bezel_threshold)) {
-			alert("bottom left 2")
-		}
-		// bottom center
-		else if (x1 > threshold_x && x1 < (res_x - threshold_x) && y1 > (res_y - bezel_threshold)) {
-			alert("bottom center");
-		}
-		// bottom right
-		else if ((res_x - x1) < bezel_threshold && y1 > (res_y - threshold_y)) {
-			alert("bottom right 1");
-		}
-		else if ((res_x - x1) < threshold_x && y1 > (res_y - bezel_threshold)) {
-			alert("bottom right 2");
-		} 
-
+		starting_point = getStartingPoint(x1, y1);
 	}, false);
 
+	/*
+	 *	Touch move: called when finger moves on the screen
+	 */
 	document.body.addEventListener('touchmove', function(e){
 		e.preventDefault();
 	}, false);
 
+	/*
+	 *	Touch end: called when finger is released from screen
+	 */
 	document.body.addEventListener('touchend', function(e){
-		// alert("release event");
 		x2 = e.changedTouches[0].pageX;
 		y2 = e.changedTouches[0].pageY;
 
@@ -91,15 +55,57 @@ window.addEventListener('load', function(){ // on page load
 
 		var hypotenuse = Math.sqrt(dist_x*dist_x + dist_y*dist_y);
 
-
 		if (hypotenuse > dist_threshold) {
 			var m = (y2 - y1) / (x2 - x1);
-			alert("swipe with m=" + m + " and dist=" + dist_x + ", " + dist_y);
+			alert("swipe from " + starting_point);
 		}
-		else {
-			// alert("no swipe with");
-		}
-
 	}, false);
  
 }, false);
+
+function getStartingPoint(x, y) {
+	// top left corner case
+	if (x < bezel_threshold && y < threshold_y) {
+		return "TL";
+	}
+	else if (y < bezel_threshold && x < threshold_x) {
+		return "TL";
+	}
+	// top center
+	else if (x > threshold_x && x < (res_x - threshold_x) && y < bezel_threshold) {
+		return "TC";
+	}
+	// top right
+	else if ((res_x - x) < bezel_threshold && y < threshold_y) {
+		return "TR";
+	}
+	else if ((y < bezel_threshold) && (res_x - x) < threshold_x) {
+		return "TR";
+	}
+	// middle left
+	else if (x < 30 && threshold_y < y  && y < (res_y - threshold_y)) {
+		return "ML";
+	}
+	// middle right
+	else if (x > (res_x - threshold_x) && threshold_y < y  && y < (res_y - threshold_y)) {
+		return "MR";
+	}
+	// bottom left
+	else if (x < bezel_threshold && y > (res_y - threshold_y)) {
+		return "BL";
+	}
+	else if (x < threshold_x && y > (res_y - bezel_threshold)) {
+		return "BL";
+	}
+	// bottom center
+	else if (x > threshold_x && x < (res_x - threshold_x) && y > (res_y - bezel_threshold)) {
+		return "BC";
+	}
+	// bottom right
+	else if ((res_x - x) < bezel_threshold && y > (res_y - threshold_y)) {
+		return "BR";
+	}
+	else if ((res_x - x) < threshold_x && y > (res_y - bezel_threshold)) {
+		return "BR";
+	}
+}
