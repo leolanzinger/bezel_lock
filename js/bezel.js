@@ -20,8 +20,8 @@ window.addEventListener('load', function(){ // on page load
 	res_x = window.screen.availWidth;
 	res_y = window.screen.availHeight;
 	
-	$(body).width(res_x);
-	$(body).height(res_y);
+	$('body').width(res_x);
+	$('body').height(res_y);
 
 	threshold_x = res_x / 5;
 	threshold_y = res_y / 5;
