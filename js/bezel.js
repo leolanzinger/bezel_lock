@@ -40,18 +40,37 @@ window.addEventListener('load', function(){ // on page load
 		}
 		// top right
 		else if ((res_x - x1) < bezel_threshold && y1 < threshold_y) {
-			alert("top right");
+			alert("top right 1");
 		}
 		else if ((y1 < bezel_threshold) && (res_x - x1) < threshold_x) {
-			alert("top right");
+			alert("top right 2");
 		}
 		// middle left
 		else if (x1 < 30 && threshold_y < y1  && y1 < (res_y - threshold_y)) {
 			alert("middle left");
 		}
+		// middle right
 		else if (x1 > (res_x - threshold_x) && threshold_y < y1  && y1 < (res_y - threshold_y)) {
 			alert("middle right");
 		}
+		// bottom left
+		else if (x1 < bezel_threshold && y1 > (res_y - threshold_y)) {
+			alert("bottom left 1")
+		}
+		else if (x1 < threshold_x && y1 > (res_y - bezel_threshold)) {
+			alert("bottom left 2")
+		}
+		// bottom center
+		else if (x1 > threshold_x && x1 < (res_x - threshold_x) && y1 > (res_y - bezel_threshold)) {
+			alert("bottom center");
+		}
+		// bottom right
+		else if ((res_x - x1) < bezel_threshold && y1 > (res_y - threshold_y)) {
+			alert("bottom right 1");
+		}
+		else if ((res_x - x1) < threshold_x && y1 > (res_y - bezel_threshold)) {
+			alert("bottom right 2");
+		} 
 
 	}, false);
 
