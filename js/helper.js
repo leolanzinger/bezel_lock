@@ -39,6 +39,7 @@ function loadCss(index) {
     head.appendChild(link);
 }
 
+// fast touch response (remove 300 ms click delay)
 if ('ontouchstart' in window) {
    window.addEventListener('load', function() {
       FastClick.attach(document.body);
