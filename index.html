@@ -13,7 +13,6 @@
         <link href="css/style.css" rel="stylesheet">
         <script src="js/jquery.js"></script>
         <script src="js/helper.js"></script>
-        <script src="js/bezel.js"></script>
         <script>
             if(getMobileOperatingSystem() == 'iOS') {
                 console.log("ios");
@@ -25,7 +24,7 @@
             }
             else {
                 console.log("no mobile");
-                loadCss(1);
+                loadCss(0);
             }
         </script>
           
@@ -39,5 +38,6 @@
 
         <center><h1>test page</h1></center>
 
+    <script src="js/bezel.js"></script>
     </body>
 </html>
