@@ -25,11 +25,14 @@ var screenRatio;
 var realWidth;
 var realHeight;
  
-if(width>height){realWidth=width;realHeight=height;screenRatio=(height/width);}
+if(isNaN(screenRatio)){
  
-else{realWidth=height;realHeight=width;screenRatio=(width/height);
-	
+if(window.innerHeight>window.innerWidth){realWidth=window.innerHeight; realHeight= window.innerWidth ;screenRatio = (window.innerWidth/window.innerHeight);}
+ 
+else{realWidth=window.innerWidth; realHeight= window.innerHeight;screenRatio = (window.innerHeight/window.innerWidth);}
+ 
 }
+ 
 
 
  
