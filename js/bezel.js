@@ -15,12 +15,6 @@ var starting_point;
 var res_x, res_y;
 var threshold_x, threshold_y;
 
-// set full size every time it resizes
-$(window).resize(function() {
-  $('body').width($(window).width());
-  $('body').height($(window).height());
-}
-
 // touch events
 window.addEventListener('load', function(){ // on page load
  
