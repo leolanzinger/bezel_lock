@@ -15,6 +15,30 @@ var starting_point;
 var res_x, res_y;
 var threshold_x, threshold_y;
 
+//screen size
+
+var width = screen.height;
+var height = screen.width;
+var screenRatio;
+var realWidth;
+var realHeight;
+ 
+if(width>height){realWidth=width;realHeight=height;screenRatio=(height/width);}
+ 
+else{realWidth=height;realHeight=width;screenRatio=(width/height);
+	
+}
+
+if(isNaN(screenRatio)){
+ 
+if(window.innerHeight>window.innerWidth){realWidth=window.innerHeight; realHeight= window.innerWidth ;screenRatio = (window.innerWidth/window.innerHeight);}
+ 
+else{realWidth=window.innerWidth; realHeight= window.innerHeight;screenRatio = (window.innerHeight/window.innerWidth);}
+ 
+}
+ 
+
+
 // touch events
 window.addEventListener('load', function(){ // on page load
  
