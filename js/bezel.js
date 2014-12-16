@@ -15,6 +15,12 @@ var starting_point;
 var res_x, res_y;
 var threshold_x, threshold_y;
 
+// set full size every time it resizes
+$(window).resize(function() {
+  $('body').width($(window).width());
+  $('body').height($(window).height());
+}
+
 // touch events
 window.addEventListener('load', function(){ // on page load
  
@@ -54,58 +60,50 @@ window.addEventListener('load', function(){ // on page load
 
 		var dist_x = Math.abs(x2 - x1);
 		var dist_y = Math.abs(y2 - y1);
+		if (dist_x > 30 || dist_y > 30) { 
 
-		var hypotenuse = Math.sqrt(dist_x*dist_x + dist_y*dist_y);
+			var hypotenuse = Math.sqrt(dist_x*dist_x + dist_y*dist_y);
 
-		// swipe action
-		if (hypotenuse > dist_threshold) {
-			var m = (y2 - y1) / (x2 - x1);
-			switch (starting_point) {
-				case "TL":
-					$('#num').html("1");
-					animateNum();
-					break;
-				case "TC":
-					$('#num').html("2");
-					animateNum();
-					break;
-				case "TR":
-					$('#num').html("3");
-					animateNum();
-					break;
-				case "ML":
-					$('#num').html("4");
-					animateNum();
-					break;
-				case "MR":
-					$('#num').html("6");
-					animateNum();
-					break;
-				case "BL":
-					$('#num').html("7");
-					animateNum();
-					break;
-				case "BC":
-					$('#num').html("8");
-					animateNum();
-					break;
-				case "BR":
-					$('#num').html("9");
-					animateNum();
-					break;
-				default:
-					break;
+			// swipe action
+			if (hypotenuse > dist_threshold) {
+				var m = (y2 - y1) / (x2 - x1);
+				switch (starting_point) {
+					case "TL":
+						animateNum(1);
+						break;
+					case "TC":
+						animateNum(2);
+						break;
+					case "TR":
+						animateNum(3);
+						break;
+					case "ML":
+						animateNum(4);
+						break;
+					case "MR":
+						animateNum(6);
+						break;
+					case "BL":
+						animateNum(7);
+						break;
+					case "BC":
+						animateNum(8);
+						break;
+					case "BR":
+						animateNum(9);
+						break;
+					default:
+						break;
+				}
 			}
 		}
 		// click action
 		else{
 			if (y1 < (res_y / 2)) {
-				$('#num').html("5");
-				animateNum();
+				animateNum(5);
 			}
 			else {
-				$('#num').html("0");
-				animateNum();
+				animateNum(0);
 			}
 		}
 		e.preventDefault();

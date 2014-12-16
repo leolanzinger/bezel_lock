@@ -42,7 +42,8 @@ function loadCss(index) {
 // }
 
 // animate the numbers on the numpad
-function animateNum() {
+function animateNum(number) {
+  $('#num').empty().append(number);
   $('#num').animate({
     opacity: 1,
     fontSize: "8em",
