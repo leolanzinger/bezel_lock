@@ -35,8 +35,29 @@ function loadCss(index) {
 }
 
 // fast touch response (remove 300 ms click delay)
-if ('ontouchstart' in window) {
-   window.addEventListener('load', function() {
-      FastClick.attach(document.body);
-   }, false);
+// if ('ontouchstart' in window) {
+//    window.addEventListener('load', function() {
+//       FastClick.attach(document.body);
+//    }, false);
+// }
+
+// animate the numbers on the numpad
+function animateNum() {
+  $('#num').animate({
+    opacity: 1,
+    fontSize: "8em",
+    marginTop: "55%"
+  }, 200, function() {
+    $('#num').animate({
+      opacity: 1,
+      fontSize: "8em",
+      marginTop: "55%"
+    }, 300, function(){
+      $('#num').animate({
+        opacity: 0,
+        fontSize: "6em",
+        marginTop: "60%"
+      }, 100, function(){});
+    });
+  });
 }

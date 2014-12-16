@@ -7,6 +7,7 @@
 // constants
 var dist_threshold = 100;
 var bezel_threshold = 30;
+var click_threshold = 10;
 
 // variables
 var x1, x2, y1, y2;
@@ -34,6 +35,7 @@ window.addEventListener('load', function(){ // on page load
 		y1 = e.changedTouches[0].pageY;
 
 		starting_point = getStartingPoint(x1, y1);
+		e.preventDefault();
 	}, false);
 
 	/*
@@ -55,10 +57,58 @@ window.addEventListener('load', function(){ // on page load
 
 		var hypotenuse = Math.sqrt(dist_x*dist_x + dist_y*dist_y);
 
+		// swipe action
 		if (hypotenuse > dist_threshold) {
 			var m = (y2 - y1) / (x2 - x1);
-			alert("swipe from " + starting_point);
+			switch (starting_point) {
+				case "TL":
+					$('#num').html("1");
+					animateNum();
+					break;
+				case "TC":
+					$('#num').html("2");
+					animateNum();
+					break;
+				case "TR":
+					$('#num').html("3");
+					animateNum();
+					break;
+				case "ML":
+					$('#num').html("4");
+					animateNum();
+					break;
+				case "MR":
+					$('#num').html("6");
+					animateNum();
+					break;
+				case "BL":
+					$('#num').html("7");
+					animateNum();
+					break;
+				case "BC":
+					$('#num').html("8");
+					animateNum();
+					break;
+				case "BR":
+					$('#num').html("9");
+					animateNum();
+					break;
+				default:
+					break;
+			}
 		}
+		// click action
+		else{
+			if (y1 < (res_y / 2)) {
+				$('#num').html("5");
+				animateNum();
+			}
+			else {
+				$('#num').html("0");
+				animateNum();
+			}
+		}
+		e.preventDefault();
 	}, false);
  
 }, false);
