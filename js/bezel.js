@@ -14,6 +14,8 @@ var x1, x2, y1, y2;
 var starting_point;
 var res_x, res_y;
 var threshold_x, threshold_y;
+var animating = false;
+var retriggered = false;
 
 // touch events
 window.addEventListener('load', function(){ // on page load
@@ -63,28 +65,76 @@ window.addEventListener('load', function(){ // on page load
 				var m = (y2 - y1) / (x2 - x1);
 				switch (starting_point) {
 					case "TL":
-						animateNum(1);
+						$('#num').empty().append("1");
+						if (!animating) {
+							animateNum();
+						}
+						else {
+							retriggered = true;
+						}
 						break;
 					case "TC":
-						animateNum(2);
+						$('#num').empty().append("2");
+						if (!animating) {
+							animateNum();
+						}
+						else {
+							retriggered = true;
+						}
 						break;
 					case "TR":
-						animateNum(3);
+						$('#num').empty().append("3");
+						if (!animating) {
+							animateNum();
+						}
+						else {
+							retriggered = true;
+						}
 						break;
 					case "ML":
-						animateNum(4);
+						$('#num').empty().append("4");
+						if (!animating) {
+							animateNum();
+						}
+						else {
+							retriggered = true;
+						}
 						break;
 					case "MR":
-						animateNum(6);
+						$('#num').empty().append("6");
+						if (!animating) {
+							animateNum();
+						}
+						else {
+							retriggered = true;
+						}
 						break;
 					case "BL":
-						animateNum(7);
+						$('#num').empty().append("7");
+						if (!animating) {
+							animateNum();
+						}
+						else {
+							retriggered = true;
+						}
 						break;
 					case "BC":
-						animateNum(8);
+						$('#num').empty().append("8");
+						if (!animating) {
+							animateNum();
+						}
+						else {
+							retriggered = true;
+						}
 						break;
 					case "BR":
-						animateNum(9);
+						$('#num').empty().append("9");
+						if (!animating) {
+							animateNum();
+						}
+						else {
+							retriggered = true;
+						}
 						break;
 					default:
 						break;
@@ -94,10 +144,22 @@ window.addEventListener('load', function(){ // on page load
 		// click action
 		else{
 			if (y1 < (res_y / 2)) {
-				animateNum(5);
+				$('#num').empty().append("5");
+				if (!animating) {
+					animateNum();
+				}
+				else {
+					retriggered = true;
+				}
 			}
 			else {
-				animateNum(0);
+				$('#num').empty().append("0");
+				if (!animating) {
+					animateNum();
+				}
+				else {
+					retriggered = true;
+				}
 			}
 		}
 		e.preventDefault();

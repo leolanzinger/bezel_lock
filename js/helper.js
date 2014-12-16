@@ -42,8 +42,8 @@ function loadCss(index) {
 // }
 
 // animate the numbers on the numpad
-function animateNum(number) {
-  $('#num').empty().append(number);
+function animateNum() {
+  animating = true;
   $('#num').animate({
     opacity: 1,
     fontSize: "8em",
@@ -54,11 +54,41 @@ function animateNum(number) {
       fontSize: "8em",
       marginTop: "55%"
     }, 300, function(){
-      $('#num').animate({
-        opacity: 0,
-        fontSize: "6em",
-        marginTop: "60%"
-      }, 100, function(){});
+        fadeOutAnim();
     });
   });
+}
+
+// fade out animation
+function fadeOutAnim() {
+  if (!retriggered) {
+    $('#num').animate({
+      opacity: 0,
+      fontSize: "6em",
+      marginTop: "60%"
+    }, 100, function(){
+      animating = false;
+    });
+  }
+  else {
+    retriggered = false;
+    $('#num').animate({
+      opacity: 1,
+      fontSize: "8em",
+      marginTop: "55%"
+    }, 200, function() {
+      if (!retriggered) {
+        $('#num').animate({
+          opacity: 0,
+          fontSize: "6em",
+          marginTop: "60%"
+        }, 100, function(){
+          animating = false;
+        });
+      }
+      else {
+        fadeOutAnim();
+      }
+    });
+  }
 }
