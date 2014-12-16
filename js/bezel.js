@@ -25,7 +25,7 @@ var screenRatio;
 var realWidth;
 var realHeight;
  
-
+scalesPageToFit:true,
 
  
 
