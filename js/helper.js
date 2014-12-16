@@ -47,12 +47,12 @@ function animateNum() {
   $('#num').animate({
     opacity: 1,
     fontSize: "8em",
-    marginTop: "55%"
+    marginTop: "25%"
   }, 200, function() {
     $('#num').animate({
       opacity: 1,
       fontSize: "8em",
-      marginTop: "55%"
+      marginTop: "25%"
     }, 300, function(){
         fadeOutAnim();
     });
@@ -65,7 +65,7 @@ function fadeOutAnim() {
     $('#num').animate({
       opacity: 0,
       fontSize: "6em",
-      marginTop: "60%"
+      marginTop: "30%"
     }, 100, function(){
       animating = false;
     });
@@ -75,13 +75,13 @@ function fadeOutAnim() {
     $('#num').animate({
       opacity: 1,
       fontSize: "8em",
-      marginTop: "55%"
+      marginTop: "25%"
     }, 200, function() {
       if (!retriggered) {
         $('#num').animate({
           opacity: 0,
           fontSize: "6em",
-          marginTop: "60%"
+          marginTop: "20%"
         }, 100, function(){
           animating = false;
         });
@@ -91,4 +91,21 @@ function fadeOutAnim() {
       }
     });
   }
+}
+
+// fill password dots
+function setCompletedDot() {
+  cur_index++;
+  $("#ios-dot-" + cur_index).attr("src","img/oval_ios_full.png");
+  checkPin();
+}
+
+// empty filled dots
+function checkPin() {
+  if (cur_index == 4) {
+    setTimeout(function() {
+      cur_index = 0;
+      $('.ios-dots').attr("src", "img/oval_ios.png");
+    }, 800);
+  } 
 }

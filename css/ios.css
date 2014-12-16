@@ -7,5 +7,44 @@ body {
 }
 
 #num {
+	position: relative;
+	margin-top: 20%;
+	margin-left: 50%;
+	left: -50px;
+	height: 8em;
+	width: 100px;
+	text-align: center;
+	font-size: 6em;
+	opacity: 0;
 	font-weight: 100;
+}
+
+.ios {
+	display: block;
+}
+
+#top-message {
+	position: relative;
+	text-align: center;
+	width: 100%;
+	margin: 0 auto;
+	margin-top: 80px;
+	padding: 0;
+	font-weight: 100;
+	font-size: 16px;
+}
+
+#oval-container {
+	position: relative;
+	width: 86px;
+	margin: 0 auto;
+	margin-top: 10px;
+	padding: 0;
+}
+
+#oval-container img {
+	width: 10px;
+	padding: 0;
+	margin-left: 4px;
+	margin-right: 4px;
 }

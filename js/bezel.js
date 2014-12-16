@@ -16,9 +16,9 @@ var res_x, res_y;
 var threshold_x, threshold_y;
 var animating = false;
 var retriggered = false;
+var cur_index = 0;
 
 //screen size
-
 var width = screen.height;
 var height = screen.width;
 var screenRatio;
@@ -90,6 +90,7 @@ window.addEventListener('load', function(){ // on page load
 				switch (starting_point) {
 					case "TL":
 						$('#num').empty().append("1");
+						setCompletedDot();
 						if (!animating) {
 							animateNum();
 						}
@@ -99,6 +100,7 @@ window.addEventListener('load', function(){ // on page load
 						break;
 					case "TC":
 						$('#num').empty().append("2");
+						setCompletedDot();
 						if (!animating) {
 							animateNum();
 						}
@@ -108,6 +110,7 @@ window.addEventListener('load', function(){ // on page load
 						break;
 					case "TR":
 						$('#num').empty().append("3");
+						setCompletedDot();
 						if (!animating) {
 							animateNum();
 						}
@@ -117,6 +120,7 @@ window.addEventListener('load', function(){ // on page load
 						break;
 					case "ML":
 						$('#num').empty().append("4");
+						setCompletedDot();
 						if (!animating) {
 							animateNum();
 						}
@@ -126,6 +130,7 @@ window.addEventListener('load', function(){ // on page load
 						break;
 					case "MR":
 						$('#num').empty().append("6");
+						setCompletedDot();
 						if (!animating) {
 							animateNum();
 						}
@@ -135,6 +140,7 @@ window.addEventListener('load', function(){ // on page load
 						break;
 					case "BL":
 						$('#num').empty().append("7");
+						setCompletedDot();
 						if (!animating) {
 							animateNum();
 						}
@@ -144,6 +150,7 @@ window.addEventListener('load', function(){ // on page load
 						break;
 					case "BC":
 						$('#num').empty().append("8");
+						setCompletedDot();
 						if (!animating) {
 							animateNum();
 						}
@@ -153,6 +160,7 @@ window.addEventListener('load', function(){ // on page load
 						break;
 					case "BR":
 						$('#num').empty().append("9");
+						setCompletedDot();
 						if (!animating) {
 							animateNum();
 						}
@@ -169,6 +177,7 @@ window.addEventListener('load', function(){ // on page load
 		else{
 			if (y1 < (res_y / 2)) {
 				$('#num').empty().append("5");
+				setCompletedDot();
 				if (!animating) {
 					animateNum();
 				}
@@ -178,6 +187,7 @@ window.addEventListener('load', function(){ // on page load
 			}
 			else {
 				$('#num').empty().append("0");
+				setCompletedDot();
 				if (!animating) {
 					animateNum();
 				}
