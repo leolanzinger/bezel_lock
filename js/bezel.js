@@ -25,14 +25,11 @@ var screenRatio;
 var realWidth;
 var realHeight;
  
-if(isNaN(screenRatio)){
- 
-if(window.innerHeight>window.innerWidth){realWidth=window.innerHeight; realHeight= window.innerWidth ;screenRatio = (window.innerWidth/window.innerHeight);}
- 
-else{realWidth=window.innerWidth; realHeight= window.innerHeight;screenRatio = (window.innerHeight/window.innerWidth);}
- 
+if (window.devicePixelRatio == 1.5) {
+  alert("This is a high-density screen");
+} else if (window.devicePixelRatio == 0.75) {
+  alert("This is a low-density screen");
 }
- 
 
 
  
