@@ -31,13 +31,7 @@ else{realWidth=height;realHeight=width;screenRatio=(width/height);
 	
 }
 
-if(isNaN(screenRatio)){
- 
-if(window.innerHeight>window.innerWidth){realWidth=window.innerHeight; realHeight= window.innerWidth ;screenRatio = (window.innerWidth/window.innerHeight);}
- 
-else{realWidth=window.innerWidth; realHeight= window.innerHeight;screenRatio = (window.innerHeight/window.innerWidth);}
- 
-}
+
  
 
 
