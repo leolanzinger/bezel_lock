@@ -19,7 +19,7 @@ function addNumber(input) {
 	test_array.push(input);
 
 	// stop the test at 20 inputs
-	if (test_array.length == 10) {
+	if (test_array.length == 20) {
 		stopTest();
 	}
 }
