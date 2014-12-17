@@ -1,8 +1,10 @@
-/**
+/*
+*   Helper functions file
+*/
+
+/*
  * Determine the mobile operating system.
  * This function either returns 'iOS', 'Android' or 'unknown'
- *
- * @returns {String}
  */
 function getMobileOperatingSystem() {
   var userAgent = navigator.userAgent || navigator.vendor || window.opera;
@@ -108,4 +110,67 @@ function checkPin() {
       $('.ios-dots').attr("src", "img/oval_ios.png");
     }, 800);
   } 
+}
+
+// check resolution of the screen and set window res accordingly
+function checkResolution() {
+  res_x = window.screen.availWidth;
+  res_y = window.screen.availHeight;
+  
+  $('#res-debug').html(res_x + ", " + res_y);
+
+  $('body').width(res_x);
+  $('body').height(res_y);
+  
+  threshold_x = res_x / 5;
+  threshold_y = res_y / 5;
+
+}
+
+// get starting point of touch event
+function getStartingPoint(x, y) {
+  // top left corner case
+  if (x < bezel_threshold && y < threshold_y) {
+    return "TL";
+  }
+  else if (y < bezel_threshold && x < threshold_x) {
+    return "TL";
+  }
+  // top center
+  else if (x > threshold_x && x < (res_x - threshold_x) && y < bezel_threshold) {
+    return "TC";
+  }
+  // top right
+  else if ((res_x - x) < bezel_threshold && y < threshold_y) {
+    return "TR";
+  }
+  else if ((y < bezel_threshold) && (res_x - x) < threshold_x) {
+    return "TR";
+  }
+  // middle left
+  else if (x < 30 && threshold_y < y  && y < (res_y - threshold_y)) {
+    return "ML";
+  }
+  // middle right
+  else if (x > (res_x - threshold_x) && threshold_y < y  && y < (res_y - threshold_y)) {
+    return "MR";
+  }
+  // bottom left
+  else if (x < bezel_threshold && y > (res_y - threshold_y)) {
+    return "BL";
+  }
+  else if (x < threshold_x && y > (res_y - bezel_threshold)) {
+    return "BL";
+  }
+  // bottom center
+  else if (x > threshold_x && x < (res_x - threshold_x) && y > (res_y - bezel_threshold)) {
+    return "BC";
+  }
+  // bottom right
+  else if ((res_x - x) < bezel_threshold && y > (res_y - threshold_y)) {
+    return "BR";
+  }
+  else if ((res_x - x) < threshold_x && y > (res_y - bezel_threshold)) {
+    return "BR";
+  }
 }

@@ -44,10 +44,11 @@
     </head>
     <body>
 
-	    <!-- debug android resolution -->
-        <div id="res-debug"></div>
+	    <!-- DEBUG resolution (uncomment this) -->
+        <!-- <div id="res-debug"></div> -->
         <!-- <div id="rect-debug"></div> -->
 
+        <!-- iOS lockscreen layout --><!--
         <div id="top-message" class="ios">
             Enter Bezel Passcode
         </div>
@@ -57,8 +58,16 @@
             <img id="ios-dot-3" class="ios-dots" src="img/oval_ios.png" />
             <img id="ios-dot-4" class="ios-dots" src="img/oval_ios.png" />
         </div>
+        -->
 
+        <!-- TRY / TEST buttons -->
+        <button id="try-button" class="button" type="button" onClick="startTry()">Free try</button>
+        <button id="test-button" class="button" type="button" onClick="startTest()">Start test</button>
+
+        <!-- input numbers -->
         <div id="num"></div>
+
+    <script src="js/test.js"></script>
     <script src="js/bezel.js"></script>
     </body>
 </html>

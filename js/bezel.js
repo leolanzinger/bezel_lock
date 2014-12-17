@@ -8,6 +8,7 @@
 var dist_threshold = 100;
 var bezel_threshold = 30;
 var click_threshold = 10;
+var try_threshold = 200;
 
 // variables
 var x1, x2, y1, y2;
@@ -24,22 +25,33 @@ var height = screen.width;
 var screenRatio;
 var realWidth;
 var realHeight;
- 
 
- 
+// testing
+var tryrunning = false;
+var testrunning = false;
+var testclick = true;
 
-
-// touch events
+// touch event listeners
 window.addEventListener('load', function(){ // on page load
  
+ 	// set resolution and call res function
 	res_x = window.screen.availWidth;
 	res_y = window.screen.availHeight;
-	
-	
 	setTimeout(checkResolution, 300);
-	
 	threshold_x = res_x / 5;
 	threshold_y = res_y / 5;
+
+	/*
+	 *	Touch on buttons events
+	 */
+	$('#try-button').on('touchend',function(e) {
+		startTry();
+		e.preventDefault();
+	});
+	$('#test-button').on('touchend',function(e) {
+		startTest();
+		e.preventDefault();
+	});
 
 	/*
 	 *	Touch starts: called when finger touches the screen
@@ -68,184 +80,184 @@ window.addEventListener('load', function(){ // on page load
 
 		var dist_x = Math.abs(x2 - x1);
 		var dist_y = Math.abs(y2 - y1);
-		if (dist_x > 30 || dist_y > 30) { 
 
-			var hypotenuse = Math.sqrt(dist_x*dist_x + dist_y*dist_y);
+		// check if test or try
+		if (tryrunning == true || testrunning == true) {
 
-			// swipe action
-			if (hypotenuse > dist_threshold) {
-				var m = (y2 - y1) / (x2 - x1);
-				switch (starting_point) {
-					case "TL":
-						$('#num').empty().append("1");
-						setCompletedDot();
-						if (!animating) {
-							animateNum();
-						}
-						else {
-							retriggered = true;
-						}
-						break;
-					case "TC":
-						$('#num').empty().append("2");
-						setCompletedDot();
-						if (!animating) {
-							animateNum();
-						}
-						else {
-							retriggered = true;
-						}
-						break;
-					case "TR":
-						$('#num').empty().append("3");
-						setCompletedDot();
-						if (!animating) {
-							animateNum();
-						}
-						else {
-							retriggered = true;
-						}
-						break;
-					case "ML":
-						$('#num').empty().append("4");
-						setCompletedDot();
-						if (!animating) {
-							animateNum();
-						}
-						else {
-							retriggered = true;
-						}
-						break;
-					case "MR":
-						$('#num').empty().append("6");
-						setCompletedDot();
-						if (!animating) {
-							animateNum();
-						}
-						else {
-							retriggered = true;
-						}
-						break;
-					case "BL":
-						$('#num').empty().append("7");
-						setCompletedDot();
-						if (!animating) {
-							animateNum();
-						}
-						else {
-							retriggered = true;
-						}
-						break;
-					case "BC":
-						$('#num').empty().append("8");
-						setCompletedDot();
-						if (!animating) {
-							animateNum();
-						}
-						else {
-							retriggered = true;
-						}
-						break;
-					case "BR":
-						$('#num').empty().append("9");
-						setCompletedDot();
-						if (!animating) {
-							animateNum();
-						}
-						else {
-							retriggered = true;
-						}
-						break;
-					default:
-						break;
-				}
-			}
-		}
-		// click action
-		else{
-			if (y1 < (res_y / 2)) {
-				$('#num').empty().append("5");
-				setCompletedDot();
-				if (!animating) {
-					animateNum();
-				}
-				else {
-					retriggered = true;
-				}
+			// if first click then do not perform action
+			if (testclick) {
+				testclick = false;
 			}
 			else {
-				$('#num').empty().append("0");
-				setCompletedDot();
-				if (!animating) {
-					animateNum();
+				// moving finger
+				if (dist_x > 30 || dist_y > 30) { 
+					// compute the hypotenuse = distance traveled
+					var hypotenuse = Math.sqrt(dist_x*dist_x + dist_y*dist_y);
+
+					// swipe action
+					if (hypotenuse > dist_threshold) {
+						var m = (y2 - y1) / (x2 - x1);
+						switch (starting_point) {
+							case "TL":
+								$('#num').empty().append("1");
+								addNumber(1);
+								setCompletedDot();
+								if (!animating) {
+									animateNum();
+								}
+								else {
+									retriggered = true;
+								}
+								break;
+							case "TC":
+								$('#num').empty().append("2");
+								addNumber(2);
+								setCompletedDot();
+								if (!animating) {
+									animateNum();
+								}
+								else {
+									retriggered = true;
+								}
+								break;
+							case "TR":
+								$('#num').empty().append("3");
+								addNumber(3);
+								setCompletedDot();
+								if (!animating) {
+									animateNum();
+								}
+								else {
+									retriggered = true;
+								}
+								break;
+							case "ML":
+								$('#num').empty().append("4");
+								addNumber(4);
+								setCompletedDot();
+								if (!animating) {
+									animateNum();
+								}
+								else {
+									retriggered = true;
+								}
+								break;
+							case "MR":
+								$('#num').empty().append("6");
+								addNumber(6);
+								setCompletedDot();
+								if (!animating) {
+									animateNum();
+								}
+								else {
+									retriggered = true;
+								}
+								break;
+							case "BL":
+								$('#num').empty().append("7");
+								addNumber(7);
+								setCompletedDot();
+								if (!animating) {
+									animateNum();
+								}
+								else {
+									retriggered = true;
+								}
+								break;
+							case "BC":
+								$('#num').empty().append("8");
+								addNumber(8);
+								setCompletedDot();
+								if (!animating) {
+									animateNum();
+								}
+								else {
+									retriggered = true;
+								}
+								break;
+							case "BR":
+								$('#num').empty().append("9");
+								addNumber(9);
+								setCompletedDot();
+								if (!animating) {
+									animateNum();
+								}
+								else {
+									retriggered = true;
+								}
+								break;
+							default:
+								// stop try page
+								if (tryrunning) {
+									if (hypotenuse > try_threshold) {
+										if (y1 < (res_y / 2) && y2 > (res_y / 2) && y1 > (res_y / 5) && y2 < ((res_y / 5)*4)) {
+											testclick = true;
+											goBackToHome();
+										}
+									}
+								}
+								// wrong gesture in test mode
+								else if (testrunning) {
+									// 99 is the error code
+									addNumber(99);
+								}
+								break;
+						}
+					}
 				}
-				else {
-					retriggered = true;
+				// click action
+				else{
+					if (y1 < (res_y / 2)) {
+						$('#num').empty().append("5");
+						addNumber(5);
+						setCompletedDot();
+						if (!animating) {
+							animateNum();
+						}
+						else {
+							retriggered = true;
+						}
+					}
+					else {
+						$('#num').empty().append("0");
+						addNumber(0);
+						setCompletedDot();
+						if (!animating) {
+							animateNum();
+						}
+						else {
+							retriggered = true;
+						}
+					}
 				}
 			}
 		}
+		else {
+			console.log("event not handled: no test or try set to true");
+		}
+
 		e.preventDefault();
 	}, false);
  
 }, false);
 
-function getStartingPoint(x, y) {
-	// top left corner case
-	if (x < bezel_threshold && y < threshold_y) {
-		return "TL";
-	}
-	else if (y < bezel_threshold && x < threshold_x) {
-		return "TL";
-	}
-	// top center
-	else if (x > threshold_x && x < (res_x - threshold_x) && y < bezel_threshold) {
-		return "TC";
-	}
-	// top right
-	else if ((res_x - x) < bezel_threshold && y < threshold_y) {
-		return "TR";
-	}
-	else if ((y < bezel_threshold) && (res_x - x) < threshold_x) {
-		return "TR";
-	}
-	// middle left
-	else if (x < 30 && threshold_y < y  && y < (res_y - threshold_y)) {
-		return "ML";
-	}
-	// middle right
-	else if (x > (res_x - threshold_x) && threshold_y < y  && y < (res_y - threshold_y)) {
-		return "MR";
-	}
-	// bottom left
-	else if (x < bezel_threshold && y > (res_y - threshold_y)) {
-		return "BL";
-	}
-	else if (x < threshold_x && y > (res_y - bezel_threshold)) {
-		return "BL";
-	}
-	// bottom center
-	else if (x > threshold_x && x < (res_x - threshold_x) && y > (res_y - bezel_threshold)) {
-		return "BC";
-	}
-	// bottom right
-	else if ((res_x - x) < bezel_threshold && y > (res_y - threshold_y)) {
-		return "BR";
-	}
-	else if ((res_x - x) < threshold_x && y > (res_y - bezel_threshold)) {
-		return "BR";
-	}
+
+// start try page
+function startTry() {
+	console.log("try set to true");
+	tryrunning = true;
+	$('.button').css({"display" : "none"});
 }
 
-function checkResolution() {
-	res_x = window.screen.availWidth;
-	res_y = window.screen.availHeight;
-	
-	$('#res-debug').html(res_x + ", " + res_y);
+// start test page
+function startTest() {
+	console.log("test set to true");
+	initTest();
+}
 
-	$('body').width(res_x);
-	$('body').height(res_y);
-	
-	threshold_x = res_x / 5;
-	threshold_y = res_y / 5;
-
+// close test and try page
+function goBackToHome() {
+	testrunning = false;
+	tryrunning = false;
+	$('.button').css({"display" : "block"});
 }
