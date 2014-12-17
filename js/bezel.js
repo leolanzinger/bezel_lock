@@ -239,6 +239,8 @@ function getStartingPoint(x, y) {
 function checkResolution() {
 	res_x = window.screen.availWidth;
 	res_y = window.screen.availHeight;
+	
+	$('#res-debug').html(res_x + ", " + res_y);
 
 	$('body').width(res_x);
 	$('body').height(res_y);
