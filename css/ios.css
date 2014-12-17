@@ -31,20 +31,20 @@ body {
 	margin-top: 80px;
 	padding: 0;
 	font-weight: 100;
-	font-size: 16px;
+	font-size: 20px;
 }
 
 #oval-container {
 	position: relative;
-	width: 86px;
+	width: 130px;
 	margin: 0 auto;
 	margin-top: 10px;
 	padding: 0;
 }
 
 #oval-container img {
-	width: 10px;
+	width: 16px;
 	padding: 0;
-	margin-left: 4px;
-	margin-right: 4px;
+	margin-left: 6px;
+	margin-right: 6px;
 }
