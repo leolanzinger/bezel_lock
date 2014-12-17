@@ -23,10 +23,10 @@ body {
 }
 
 .button {
-	width: 140px;
-	line-height: 36px;
+	width: 300px;
+	line-height: 60px;
 	border-radius: 2px;
-	font-size: 1em;
+	font-size: 2em;
 	background-color: #fff;
 	color: #646464;
 	border: none;
