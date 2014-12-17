@@ -24,29 +24,10 @@ h1 {
 	font-weight: 200;
 }
 
-#rect-debug {
-	position: absolute;
-	display: block;
-	z-index: 1;
-	background-color: white;
-	width: 360px;
-	height: 640px;
-	top: 0;
-	left: 0;
-}
-
 .button {
 	display: block;
 	position: relative;
 	margin: 0 auto;
 	font-size: 20px;
 	cursor: pointer
-}
-
-#try-button {
-	margin-top: 40%;
-}
-
-#test-button {
-	margin-top: 20px;
 }
