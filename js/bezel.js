@@ -35,9 +35,9 @@ window.addEventListener('load', function(){ // on page load
 	res_x = window.screen.availWidth;
 	res_y = window.screen.availHeight;
 	
-	$('body').width(res_x);
-	$('body').height(res_y);
-
+	
+	setTimeout(checkResolution, 300);
+	
 	threshold_x = res_x / 5;
 	threshold_y = res_y / 5;
 
@@ -234,4 +234,16 @@ function getStartingPoint(x, y) {
 	else if ((res_x - x) < threshold_x && y > (res_y - bezel_threshold)) {
 		return "BR";
 	}
+}
+
+function checkResolution() {
+	res_x = window.screen.availWidth;
+	res_y = window.screen.availHeight;
+
+	$('body').width(res_x);
+	$('body').height(res_y);
+	
+	threshold_x = res_x / 5;
+	threshold_y = res_y / 5;
+
 }
