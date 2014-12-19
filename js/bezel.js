@@ -34,6 +34,9 @@ var testclick = true;
 // touch event listeners
 window.addEventListener('load', function(){ // on page load
  
+	// iOS: disable layout elements in starting page
+	$('.try').css({"display" : "none"});
+
  	// set resolution and call res function
 	res_x = window.screen.availWidth;
 	res_y = window.screen.availHeight;
@@ -250,6 +253,9 @@ function startTry() {
 	console.log("try set to true");
 	tryrunning = true;
 	$('.button').css({"display" : "none"});
+	if (getMobileOperatingSystem() == 'iOS') {
+		$('.try').css({"display" : "block"});
+	}
 }
 
 // start test page
@@ -263,4 +269,5 @@ function goBackToHome() {
 	testrunning = false;
 	tryrunning = false;
 	$('.button').css({"display" : "block"});
+	$('.try').css({"display" : "none"});
 }

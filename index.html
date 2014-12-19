@@ -32,7 +32,7 @@
             }
             else {
                 console.log("no mobile");
-                loadCss(1);
+                loadCss(0);
             }
         </script>
           
@@ -48,17 +48,16 @@
         <!-- <div id="res-debug"></div> -->
         <!-- <div id="rect-debug"></div> -->
 
-        <!-- iOS lockscreen layout --><!--
-        <div id="top-message" class="ios">
+        <!-- iOS lockscreen layout -->
+        <div id="top-message" class="ios try">
             Enter Bezel Passcode
         </div>
-        <div id="oval-container" class="ios">
+        <div id="oval-container" class="ios try">
             <img id="ios-dot-1" class="ios-dots" src="img/oval_ios.png" />
             <img id="ios-dot-2" class="ios-dots" src="img/oval_ios.png" />
             <img id="ios-dot-3" class="ios-dots" src="img/oval_ios.png" />
             <img id="ios-dot-4" class="ios-dots" src="img/oval_ios.png" />
         </div>
-        -->
 
         <!-- TRY / TEST buttons -->
         <button id="try-button" class="button" type="button" onClick="startTry()">Free try</button>
