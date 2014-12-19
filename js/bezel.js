@@ -204,6 +204,9 @@ window.addEventListener('load', function(){ // on page load
 								break;
 						}
 					}
+					else {
+						addNumber(99);
+					}
 				}
 				// click action
 				else{
